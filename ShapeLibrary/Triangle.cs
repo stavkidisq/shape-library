@@ -21,10 +21,10 @@ namespace ShapeLibrary
 
         public override double CalculateArea()
         {
-            Point length1 = SecondPoint - FirstPoint;
-            Point length2 = ThirdPoint - FirstPoint;
+            Point firstSide = SecondPoint - FirstPoint;
+            Point secondSide = ThirdPoint - FirstPoint;
 
-            return (0.5) * Math.Abs(length1.X * length2.Y - length2.X * length1.Y);
+            return (0.5) * Math.Abs(firstSide.X * secondSide.Y - secondSide.X * firstSide.Y);
         }
 
         public bool IsRectangular()
@@ -33,14 +33,14 @@ namespace ShapeLibrary
             Point secondSide = ThirdPoint - SecondPoint;
             Point thirdSide = ThirdPoint - FirstPoint;
 
-            var getSquareSide = (Point side) =>
+            var getSquareLength = (Point side) =>
             {
                 return Math.Pow(side.X, 2) + Math.Pow(side.Y, 2);
             };
 
-            bool isFirstSide = getSquareSide(firstSide) == getSquareSide(secondSide) + getSquareSide(thirdSide);
-            bool isSecondSide = getSquareSide(secondSide) == getSquareSide(firstSide) + getSquareSide(thirdSide);
-            bool isThirdSide = getSquareSide(thirdSide) == getSquareSide(secondSide) + getSquareSide(firstSide);
+            bool isFirstSide = getSquareLength(firstSide) == getSquareLength(secondSide) + getSquareLength(thirdSide);
+            bool isSecondSide = getSquareLength(secondSide) == getSquareLength(firstSide) + getSquareLength(thirdSide);
+            bool isThirdSide = getSquareLength(thirdSide) == getSquareLength(secondSide) + getSquareLength(firstSide);
 
             if (isFirstSide || isSecondSide || isThirdSide)
                 return true;
